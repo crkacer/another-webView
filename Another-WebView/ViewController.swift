@@ -12,6 +12,8 @@ import WebKit
 class ViewController: UIViewController, WKNavigationDelegate {
     var webView: WKWebView!
     var progressView : UIProgressView!
+    var websites  = ["apple.com", "microsoft.com"]
+    
     override func loadView() {
         webView = WKWebView()
         webView.navigationDelegate = self
@@ -21,7 +23,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let url = NSURL(string: "https://www.google.ca")!
+        let url = NSURL(string: "https://"+websites[0])!
         webView.load(NSURLRequest(url: url as URL) as URLRequest)
         webView.allowsBackForwardNavigationGestures = true
         progressView = UIProgressView(progressViewStyle: .default)
@@ -38,7 +40,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if keyPath = "estimatedProgress" {
+        if keyPath == "estimatedProgress" {
             progressView.progress = Float(webView.estimatedProgress)
             
         }
@@ -46,8 +48,10 @@ class ViewController: UIViewController, WKNavigationDelegate {
 
     func openTapped() {
         let alert = UIAlertController(title: "Open page", message: nil, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "apple.com", style: .default, handler: openPage))
-        alert.addAction(UIAlertAction(title: "microsoft.com", style: .default, handler: openPage))
+        for website in websites {
+            alert.addAction(UIAlertAction(title: website, style: .default, handler: openPage))
+        }
+        
         alert.addAction(UIAlertAction(title: "cancel", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
         
