@@ -25,7 +25,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
         webView.load(NSURLRequest(url: url as URL) as URLRequest)
         webView.allowsBackForwardNavigationGestures = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Open", style: .plain, target: self, action: #selector(ViewController.openTapped))
-        
+        let refresh = UIBarButtonItem(barButtonSystemItem: .refresh, target: webView, action: "reload")
     }
 
     func openTapped() {
@@ -43,11 +43,10 @@ class ViewController: UIViewController, WKNavigationDelegate {
         
         
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        title = webView.title
     }
-
 
 }
 
