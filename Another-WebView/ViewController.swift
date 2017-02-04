@@ -12,7 +12,7 @@ import WebKit
 class ViewController: UIViewController, WKNavigationDelegate {
     var webView: WKWebView!
     var progressView : UIProgressView!
-    var websites  = ["apple.com", "microsoft.com"]
+    var websites  = ["google.ca","apple.com", "microsoft.com"]
     
     override func loadView() {
         webView = WKWebView()
@@ -60,10 +60,20 @@ class ViewController: UIViewController, WKNavigationDelegate {
     func openPage(sender: UIAlertAction) {
         let url = NSURL(string: "http://"+sender.title!)
         webView.load(NSURLRequest(url: url! as URL) as URLRequest)
-        
-        
     }
     
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        
+        if let host = navigationAction.request.url?.host {
+            for website in websites {
+                if host.range(of: website) != nil {
+                    decisionHandler(.allow)
+                    return
+                }
+            }
+        }
+        decisionHandler(.cancel)
+    }
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         title = webView.title
     }
