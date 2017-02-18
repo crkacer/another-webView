@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "218D83FF4909CF419E1AD7F62D036D762028E4DA",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "B3881CAB5BD40EC5A6A623DB040156CA43321B7E" : 9223372036854775807,
+    "218D83FF4909CF419E1AD7F62D036D762028E4DA" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "7F6B99D7-968B-4AFC-ABC5-BC61718732F6",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "B3881CAB5BD40EC5A6A623DB040156CA43321B7E" : "",
+    "218D83FF4909CF419E1AD7F62D036D762028E4DA" : "Another-WebView\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Another-WebView",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Another-WebView.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/crkacer\/another-webView.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "218D83FF4909CF419E1AD7F62D036D762028E4DA"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/bitbucket.org\/crkacer\/ios-programming.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "B3881CAB5BD40EC5A6A623DB040156CA43321B7E"
+    }
+  ]
+}

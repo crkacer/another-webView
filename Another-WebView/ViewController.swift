@@ -6,6 +6,7 @@
 //  Copyright © 2017 Duc Nguyen. All rights reserved.
 //
 
+import Social
 import UIKit
 import WebKit
 
@@ -13,6 +14,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
     var webView: WKWebView!
     var progressView : UIProgressView!
     var websites  = ["google.ca","apple.com", "microsoft.com"]
+    var openedWebsite = URL(string: "google.ca")
     
     override func loadView() {
         webView = WKWebView()
@@ -30,7 +32,9 @@ class ViewController: UIViewController, WKNavigationDelegate {
         progressView.sizeToFit()
         let progressButton = UIBarButtonItem(customView: progressView)
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Open", style: .plain, target: self, action: #selector(ViewController.openTapped))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Open", style: .plain, target: self, action: #selector(ViewController.openTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(ViewController.shareButton))
+        
         let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let refresh = UIBarButtonItem(barButtonSystemItem: .refresh, target: webView, action: #selector(UIWebView.reload))
         toolbarItems = [progressButton, spacer, refresh]
@@ -39,10 +43,24 @@ class ViewController: UIViewController, WKNavigationDelegate {
         
     }
     
+    func shareButton () {
+        // Option 1: Open activities associated with Item
+//        let activity = UIActivityViewController(activityItems: [openedWebsite!], applicationActivities: [])
+//        present(activity, animated: true, completion: nil)
+        
+        // Option 2: Sharing in facebook, twitter...
+        if let openedWebsite = openedWebsite {
+            let social = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+            social?.setInitialText("Hello friends, check out my link!")
+            social?.add(openedWebsite)
+            present(social!, animated: true, completion: nil)
+        }
+        
+    }
+
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "estimatedProgress" {
             progressView.progress = Float(webView.estimatedProgress)
-            
         }
     }
 
@@ -58,7 +76,8 @@ class ViewController: UIViewController, WKNavigationDelegate {
     }
     
     func openPage(sender: UIAlertAction) {
-        let url = NSURL(string: "http://"+sender.title!)
+        let url = URL(string: "http://"+sender.title!)
+        openedWebsite = url
         webView.load(NSURLRequest(url: url! as URL) as URLRequest)
     }
     
